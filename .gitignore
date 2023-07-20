@@ -3,6 +3,4 @@ node_modules
 .DS_Store
 build/*
 frontend/build/*
-frontend/package-lock.json
 frontend/node_modules
-package-lock.json
