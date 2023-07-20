@@ -17,12 +17,14 @@ jobs:
           node-version: '16'
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Install dependencies 
-        run: npm install  
-      - name: Check style
-        run: npm run lint
+        run: npm ci
       - name: build
         working-directory: ./frontend
-        run: npm install && npm run build && cp -r build ../
+        run: npm ci && npm run build && cp -r build ../
+      - name: Check style
+        working-directory: .
+        run: npm run lint
+      
 
       # - name: Notify failure in build
       #  uses: rjstone/discord-webhook-notify@v1
