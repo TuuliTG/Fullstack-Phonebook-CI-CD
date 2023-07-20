@@ -22,7 +22,7 @@ jobs:
         run: npm run eslint
       - name: build
         working-directory: ./frontend
-        run: npm run build && cp -r build ../
+        run: npm install && npm run build && cp -r build ../
 
       # - name: Notify failure in build
       #  uses: rjstone/discord-webhook-notify@v1

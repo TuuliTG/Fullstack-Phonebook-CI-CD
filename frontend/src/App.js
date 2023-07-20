@@ -19,19 +19,19 @@ const App = () => {
         setPersons(initialPersons)
       })
   }, [])
-  
+
   const addNewPersons = () => {
     const isAlreadyOnList = persons.some(person => person.name === newName)
-    
+
     if (isAlreadyOnList) {
       if (window.confirm(`${newName} is already added to phonebook. Do you want to update the number?`)) {
         const person = persons.find(p => p.name === newName)
-        
-        updatePerson({person})
+
+        updatePerson({ person })
       } else {
-        emptyForm() 
+        emptyForm()
       }
-      
+
     } else {
       const hasNumber = newNumber.length > 0
       const nameObject = {
@@ -44,39 +44,39 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           emptyForm()
-          const text = `Added ${returnedPerson.name}`   
-          messageSetup(text, "message")
+          const text = `Added ${returnedPerson.name}`
+          messageSetup(text, 'message')
         })
         .catch(error => {
           console.log(error.response.data)
-          messageSetup(error.response.data.error, "error")
+          messageSetup(error.response.data.error, 'error')
         })
     }
-    
+
   }
 
   const messageSetup = ( message, classText ) => {
-    const msg = {text: message, classText: classText}
+    const msg = { text: message, classText: classText }
     setMessage(msg)
     setTimeout(() => {
       setMessage(null)
     }, 5000)
   }
 
-  const updatePerson = ({person}) => {
+  const updatePerson = ({ person }) => {
     const changedPerson = { ...person, number: newNumber }
-    
+
     personService
       .update(person.id, changedPerson)
       .then(returnedPerson => {
         setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
         emptyForm()
         const text = `Updated ${returnedPerson.name}`
-        messageSetup(text, "message")
+        messageSetup(text, 'message')
       })
       .catch(error => {
         const text = `${person.name} was already deleted from the server.`
-        messageSetup(text, "error")
+        messageSetup(text, error)
       })
   }
 
@@ -91,9 +91,9 @@ const App = () => {
           setPersons(persons.filter(p => p.id !== id))
           const text = `Deleted ${name}`
           messageSetup(text, 'message')
-      })
+        })
     }
-    
+
   }
   const emptyForm = () => {
     setNewName('')
@@ -120,4 +120,4 @@ const App = () => {
 
 }
 
-export default App;
+export default App
