@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for fullstack-phonebook-ci-cd on 2023-07-21T20:29:08+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "fullstack-phonebook-ci-cd"
+primary_region = "arn"
+
+[env]
+  PORT = "3001"
+
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 3001
+  processes = ["app"]
+
+[deploy]
+  release_command = "npm run build"
+
+[processes]
+  app = "node index.js"
+
+[build]
+  [build.args]
+    NODE_VERSION = "16.20.1"
