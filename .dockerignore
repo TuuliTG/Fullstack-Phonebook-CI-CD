@@ -1,6 +1,6 @@
+Dockerfile
+.dockerignore
 node_modules
+.git
 .env
-.DS_Store
-build/*
-frontend/build/*
 frontend/node_modules

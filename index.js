@@ -113,7 +113,7 @@ const errorHandler = (error, request, response, next) => {
 }
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'uknown endpoint' })
+  response.status(404).send({ error: 'unknown endpoint' })
 }
 app.use(unknownEndpoint)
 
