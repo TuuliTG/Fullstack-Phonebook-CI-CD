@@ -20,7 +20,7 @@ jobs:
         run: npm ci
       - name: build
         working-directory: ./frontend
-        run: npm ci && npm run build && cp -r build ../
+        run: npm install && npm run build && cp -r build ../
       - name: Check style
         working-directory: .
         run: npm run lint
