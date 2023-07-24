@@ -3,7 +3,7 @@ module.exports = {
     'node': true,
     'browser': true,
     'es6': true,
-    //"jest/globals": true
+    'jest': true
   },
   'extends': [
     'eslint:recommended',
@@ -18,7 +18,7 @@ module.exports = {
   },
   'plugins': [
     'react',
-    //"jest"
+    'jest'
   ],
   'rules': {
     'indent': [
@@ -46,6 +46,7 @@ module.exports = {
       'error', { 'before': true, 'after': true }
     ],
     'no-console': 'off',
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'no-unused-vars': ['warn']
   }
 }
