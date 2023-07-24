@@ -16,13 +16,13 @@ jobs:
         with:
           node-version: '16'
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Install dependencies 
-        run: npm ci
       - name: build
         working-directory: ./frontend
         run: npm install && npm run build && cp -r build ../
-      - name: Check style
+      - name: Install dependencies 
         working-directory: .
+        run: npm ci
+      - name: Check style
         run: npm run lint
       
 
