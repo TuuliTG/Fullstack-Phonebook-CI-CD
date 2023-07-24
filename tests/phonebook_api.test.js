@@ -7,7 +7,6 @@ const api = supertest(app)
 describe('When database has one', () => {
   beforeEach(async () => {
     await Person.deleteMany({})
-    
     const testPerson = {
       name: 'Test Person',
       number: '040123123',
