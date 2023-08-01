@@ -12,7 +12,10 @@
     "install:front": "npm install --prefix frontend",
     "build:ui": "rm -rf build && cd frontend && npm run build && cp -r build ../",
     "lint": "eslint './**/*.{js,jsx}'",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "cypress:open": "cypress open",
+    "start:test": "NODE_ENV=test node index.js",
+    "test:e2e": "cypress run"
   },
   "author": "Tuuli Toivanen-Gripentrog",
   "license": "MIT",
@@ -27,6 +30,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.3.3",
+    "cypress": "^12.17.2",
     "eslint": "^7.11.0",
     "eslint-plugin-jest": "^27.2.3",
     "eslint-plugin-react": "^7.32.2",

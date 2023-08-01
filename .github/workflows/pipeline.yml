@@ -37,13 +37,14 @@ jobs:
         env:
           TEST_MONGODB_URI: ${{ vars.TEST_MONGODB_URI }}
         run: npm test
-      # - name: e2e tests
-      #  uses: cypress-io/github-action@v5
-      #  with:
-      #    browser: chrome
-      #    command: npm run test:e2e
-      #    start: npm run start-prod
-      #    wait-on: http://localhost:5000
+      
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          command: npm run test:e2e
+          start: npm run start
+          wait-on: http://localhost:3001
       #- name: Deploy app
       #  if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
       #  env:
