@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: build
         working-directory: ./frontend
         run: npm install && npm run build && cp -r build ../
@@ -45,7 +46,6 @@ jobs:
           start: npm run start:test
           wait-on: http://localhost:3001
       - name: Deploy app to flyio
-        uses: superfly/flyctl-actions/setup-flyctl@master
         if: ${{ success() && github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
