@@ -1,6 +1,7 @@
 const personRouter = require('express').Router()
 const Person = require('../models/person')
 const logger = require('../utils/logger')
+
 personRouter.get('/',(req, res) => {
   Person.find({}).then(persons => {
     res.json(persons)

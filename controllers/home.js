@@ -1,7 +1,7 @@
 const homeRouter = require('express').Router()
 const Person = require('../models/person')
-const personRouter = require('./persons')
-personRouter.get('/info', (req,res, next) => {
+
+homeRouter.get('/info', (req,res, next) => {
   const date = new Date()
   Person.find({})
     .then(p => {
@@ -12,6 +12,10 @@ personRouter.get('/info', (req,res, next) => {
       )
     })
     .catch(error => next(error))
+})
+
+homeRouter.get('/health', (req,res, next) => {
+  res.send('ok')
 })
 
 module.exports = homeRouter
