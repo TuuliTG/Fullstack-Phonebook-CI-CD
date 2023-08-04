@@ -8,7 +8,7 @@ on:
     branches: [main]
     types: [opened, synchronize]
 jobs:
-  build_and_test:
+  build_test_deploy:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -44,24 +44,9 @@ jobs:
           command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3001
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: dist
-          path: dist
-  deploy_app:
-    needs: [build_and_test]
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-        with:
-          name: dist
-          path: dist
       - name: Deploy app to flyio
-        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        if: ${{ success() && github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: flyctl deploy --remote-only
