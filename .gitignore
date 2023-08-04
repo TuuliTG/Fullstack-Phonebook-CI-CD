@@ -5,3 +5,4 @@ build/*
 frontend/build/*
 Procfile
 cypress/videos
+cypress/screenshots
