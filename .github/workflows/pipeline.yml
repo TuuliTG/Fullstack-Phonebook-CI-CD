@@ -58,7 +58,7 @@ jobs:
           details: Deployment Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
-    needs: [deploy_app]
+    needs: [build_test_deploy]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
