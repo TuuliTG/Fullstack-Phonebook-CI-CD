@@ -12,7 +12,7 @@ const Persons = (props) => {
       {filtered.map(person =>
         <li key={person.id}>
           {person.name} {person.number}
-          <button onClick={() => props.deletePerson(person)}>Delete</button>
+          <button id={"delete" + person.number} onClick={() => props.deletePerson(person)}>Delete</button>
         </li>
       )}
     </ul>

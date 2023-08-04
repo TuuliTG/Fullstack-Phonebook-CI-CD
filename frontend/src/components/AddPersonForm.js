@@ -19,13 +19,13 @@ const Form = (props) => {
     <div>
       <form onSubmit={addName}>
         <div>
-                name: <input value={props.newName} onChange={handleNameChange}/>
+                name: <input id="nameForm" value={props.newName} onChange={handleNameChange}/>
         </div>
         <div>
-                number: <input value={props.newNumber} onChange={handleNumberChange}/>
+                number: <input id="numberForm" value={props.newNumber} onChange={handleNumberChange}/>
         </div>
         <div>
-          <button type="submit">add</button>
+          <button id="submit" type="submit">add</button>
         </div>
       </form>
     </div>
