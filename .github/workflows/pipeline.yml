@@ -46,7 +46,7 @@ jobs:
         with:
           browser: chrome
           command: npm run test:e2e
-          start: npm run start
+          start: npm run start:test
           wait-on: http://localhost:3001
       - name: Deploy app
         if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
