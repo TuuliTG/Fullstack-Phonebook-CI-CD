@@ -46,13 +46,13 @@ jobs:
           command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3001
-  deploy:
+  deploy_app:
     needs: [build_and_test]
     runs-on: ubuntu-20.04
     - uses: actions/checkout@v3
     - uses: superfly/flyctl-actions/setup-flyctl@master
     steps:
-      - name: Deploy app
+      - name: Deploy app to flyio
         if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
       #    details: Deployment Succeeded!
       #    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
-    needs: [deploy]
+    needs: [deploy_app]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
